@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/14/23.
-//
-//Test
 import SwiftUI
 
 struct ContentView: View {
@@ -13,37 +6,35 @@ struct ContentView: View {
     @State var weather: ResponseBody?
     
     var body: some View {
-        VStack{
-            
-            if let location = locationManager.location{
-                if let weather = weather{
-                    WeatherView(weather: weather)
-                    
-                }else{
+        VStack {
+            if let location = locationManager.location {
+                if let weather = weather {
+                    WeatherView(latitude: location.latitude, longitude: location.longitude, weather: weather) // Pass latitude and longitude first
+                } else {
                     LoadingView()
                         .task {
-                            do{
-                               weather =  try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                                
-                            }catch{
+                            do {
+                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                            } catch {
                                 print("Error getting weather: \(error)")
                             }
                         }
                 }
-                
-                }else{
-                    if  locationManager.isLoading{
-                        LoadingView()
-                    }else{
-                        WelcomeView()
-                        .environmentObject(locationManager)                    }
+            } else {
+                if locationManager.isLoading {
+                    LoadingView()
+                } else {
+                    WelcomeView()
+                        .environmentObject(locationManager)
                 }
             }
-        
-        .background(Color(hue: 0.598, saturation: 0.821, brightness: 0.701))
+        }
+        .background(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.blue]), startPoint: .top, endPoint: .bottom))
         .preferredColorScheme(.dark)
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -1,6 +1,9 @@
 import SwiftUI
+import MapKit // Import MapKit
 
 struct WeatherView: View {
+    var latitude: CLLocationDegrees
+    var longitude: CLLocationDegrees
     var weather: ResponseBody
 
     var currentTemperature: Int {
@@ -11,6 +14,22 @@ struct WeatherView: View {
     var airQualityIndex: Int {
         // Convert temperature to Fahrenheit
         return Int(Double(weather.data.current.pollution.aqius))
+    }
+    
+    // Computed property to calculate the background color based on the time of day
+    var backgroundColor: Color {
+        let now = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: now)
+        
+        // Define the color based on the time of day
+        if (6...11).contains(hour) {
+            return Color.orange // Morning color
+        } else if (12...18).contains(hour) {
+            return Color.blue // Afternoon color
+        } else {
+            return Color.black // Nighttime color
+        }
     }
     
     var body: some View {
@@ -40,7 +59,7 @@ struct WeatherView: View {
                             .fontWeight(.bold)
 
                         Text("\(currentTemperature)°F") // Display temperature in Fahrenheit
-                            .font(.system(size: 100))
+                            .font(.system(size: 50))
                             .fontWeight(.bold)
                             .padding()
                     }
@@ -52,25 +71,33 @@ struct WeatherView: View {
                             .fontWeight(.bold)
                         
                         Text("\(airQualityIndex)")
-                            .font(.system(size: 100))
+                            .font(.system(size: 50))
                             .fontWeight(.bold)
                             .padding()
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                
+                // Add a Map view based on latitude and longitude
+                Map(coordinateRegion: .constant(
+                    MKCoordinateRegion(
+                        center: CLLocationCoordinate2D(
+                            latitude: latitude, // Use the passed latitude
+                            longitude: longitude // Use the passed longitude
+                        ),
+                        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                    )
+                ))
+                .frame(height: 200)
+                .cornerRadius(10)
+                .padding()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom) // Cover the bottom of the screen
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .padding()
         }
+        .background(backgroundColor)
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color(hue: 0.598, saturation: 0.821, brightness: 0.701))
         .preferredColorScheme(.dark)
-    }
-}
-
-struct WeatherView_Previews: PreviewProvider {
-    static var previews: some View {
-        WeatherView(weather: previewWeather)
     }
 }
