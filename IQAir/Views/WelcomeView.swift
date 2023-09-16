@@ -5,29 +5,32 @@ struct WelcomeView: View {
     @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
-        VStack{
-            VStack(spacing: 20){
-                Text("Welcome to the Weather App!")
-                    .bold().font(.title)
+        VStack {
+            VStack(spacing: 20) {
                 
-                Text("Please share your current location to get the most updated weather")
+                Text("Welcome to the Weather App!")
+                    .bold()
+                    .font(.title)
+                
+                Text("Share location to get started!")
                     .padding()
             }
             .multilineTextAlignment(.center)
             .padding()
             
-                LocationButton(.shareCurrentLocation){
-                    locationManager.requestLocation()
-                }
-                .cornerRadius(30)
-                .symbolVariant(.fill)
-                .foregroundColor(.white)
+            LocationButton(.shareCurrentLocation) {
+                // Request the user's current location
+                locationManager.requestLocation()
+            }
+            .cornerRadius(30)
+            .symbolVariant(.fill)
+            .foregroundColor(.white)
             
             
+            Text("Developed by: Akhil Motiramani")
+                .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        
-        
     }
 }
 

@@ -1,51 +1,55 @@
 import SwiftUI
-import MapKit // Import MapKit
+import MapKit
 
 struct WeatherView: View {
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
     var weather: ResponseBody
 
+    // Calculate and return the current temperature in Fahrenheit
     var currentTemperature: Int {
-        // Convert temperature to Fahrenheit
         return Int(Double(weather.data.current.weather.tp) * 9/5 + 32)
     }
-    
+
     var airQualityIndex: Int {
-        // Convert temperature to Fahrenheit
         return Int(Double(weather.data.current.pollution.aqius))
     }
-    
-    // Computed property to calculate the background color based on the time of day
+
     var backgroundColor: Color {
+        //date object to hold current date and time
         let now = Date()
+        //create a calender object with current settings
         let calendar = Calendar.current
+        //get current hour number
         let hour = calendar.component(.hour, from: now)
-        
-        // Define the color based on the time of day
+
         if (6...11).contains(hour) {
-            return Color.orange // Morning color
+            return Color.orange
         } else if (12...18).contains(hour) {
-            return Color.blue // Afternoon color
+            return Color.blue
         } else {
-            return Color.black // Nighttime color
+            return Color.black
         }
     }
-    
+
     var body: some View {
         ZStack(alignment: .leading) {
             VStack {
                 VStack(alignment: .leading, spacing: 5) {
+                    // Display the city name
                     Text(weather.data.city)
                         .bold()
                         .font(.title)
+                    // Display the state name
                     Text(weather.data.state)
                         .bold()
                         .font(.title)
+                    // Display the country name
                     Text(weather.data.country)
                         .bold()
                         .font(.title)
 
+                    // Display the current date and time
                     Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))")
                         .fontWeight(.light)
                 }
@@ -54,22 +58,26 @@ struct WeatherView: View {
 
                 HStack {
                     VStack(alignment: .leading, spacing: 20) {
+                        // Display a label for current temperature
                         Text("Current Temperature:")
                             .font(.title)
                             .fontWeight(.bold)
 
-                        Text("\(currentTemperature)°F") // Display temperature in Fahrenheit
+                        // Display the current temperature in Fahrenheit
+                        Text("\(currentTemperature)°F")
                             .font(.system(size: 50))
                             .fontWeight(.bold)
                             .padding()
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
+
                     VStack(alignment: .leading, spacing: 20) {
+                        // Display a label for the air quality index
                         Text("Current Air Quality Index:")
                             .font(.title)
                             .fontWeight(.bold)
-                        
+
+                        // Display the current air quality index
                         Text("\(airQualityIndex)")
                             .font(.system(size: 50))
                             .fontWeight(.bold)
@@ -78,17 +86,20 @@ struct WeatherView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 // Add a Map view based on latitude and longitude
+                //.constant does not allow you to modify the region
                 Map(coordinateRegion: .constant(
                     MKCoordinateRegion(
                         center: CLLocationCoordinate2D(
-                            latitude: latitude, // Use the passed latitude
-                            longitude: longitude // Use the passed longitude
+                            latitude: latitude,
+                            longitude: longitude
                         ),
+                        //span for the map view
                         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                     )
                 ))
+                
                 .frame(height: 200)
                 .cornerRadius(10)
                 .padding()
@@ -97,6 +108,7 @@ struct WeatherView: View {
             .padding()
         }
         .background(backgroundColor)
+        //allows the content to flow all the way to the bottom
         .edgesIgnoringSafeArea(.bottom)
         .preferredColorScheme(.dark)
     }

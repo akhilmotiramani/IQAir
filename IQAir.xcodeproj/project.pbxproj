@@ -65,8 +65,8 @@
 		DE32F9BD2AB3FF2100E09060 /* IQAir */ = {
 			isa = PBXGroup;
 			children = (
-				DE32F9CF2AB405D400E09060 /* Views */,
 				DE32F9BE2AB3FF2100E09060 /* IQAirApp.swift */,
+				DE32F9CF2AB405D400E09060 /* Views */,
 				DE32F9CC2AB402AB00E09060 /* Managers */,
 				DE32F9C22AB3FF2200E09060 /* Assets.xcassets */,
 				DE32F9C42AB3FF2200E09060 /* Preview Content */,
@@ -96,10 +96,10 @@
 		DE32F9CF2AB405D400E09060 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE32F9C02AB3FF2100E09060 /* ContentView.swift */,
 				DE32F9D02AB4088100E09060 /* WelcomeView.swift */,
-				DE32F9D22AB4101600E09060 /* LoadingView.swift */,
+				DE32F9C02AB3FF2100E09060 /* ContentView.swift */,
 				DE33F4FA2AB56B3D002892F4 /* WeatherView.swift */,
+				DE32F9D22AB4101600E09060 /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
