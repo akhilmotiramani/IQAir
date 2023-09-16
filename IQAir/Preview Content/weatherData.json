@@ -25,6 +25,7 @@
                 "wd": 313,
                 "ic": "10n"
             }
+            // Add more forecast data for upcoming 76 hours
         ],
         "current": {
             "weather": {
@@ -41,6 +42,7 @@
                 "aqius": 18,
                 "mainus": "p1",
                 "aqicn": 20,
+                "maincn": "p1",
                 "p1": {
                     "conc": 20,
                     "aqius": 18,
@@ -56,4 +58,35 @@
                     "pr": 1020,
                     "hu": 62,
                     "ws": 2,
-                    
+                    "wd": 320,
+                    "ic": "01n"
+                }
+                // Add more weather historical data for past 48 hours
+            ],
+            "pollution": [
+                {
+                    "ts": "2017-02-01T01:15:00.000Z",
+                    "aqius": 18,
+                    "mainus": "p1",
+                    "aqicn": 20,
+                    "maincn": "p1",
+                    "p1": {
+                        "conc": 20,
+                        "aqius": 18,
+                        "aqicn": 20
+                    }
+                }
+                // Add more pollution historical data for past 48 hours
+            ]
+        },
+        "units": {
+            "p2": "ugm3",
+            "p1": "ugm3",
+            "o3": "ppb",
+            "n2": "ppb",
+            "s2": "ppb",
+            "co": "ppm"
+        }
+    }
+}
+

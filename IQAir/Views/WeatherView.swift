@@ -1,8 +1,3 @@
-//
-//  WeatherView.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/16/23.
 import SwiftUI
 
 struct WeatherView: View {
@@ -12,12 +7,23 @@ struct WeatherView: View {
         // Convert temperature to Fahrenheit
         return Int(Double(weather.data.current.weather.tp) * 9/5 + 32)
     }
-
+    
+    var airQualityIndex: Int {
+        // Convert temperature to Fahrenheit
+        return Int(Double(weather.data.current.pollution.aqius))
+    }
+    
     var body: some View {
         ZStack(alignment: .leading) {
             VStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(weather.data.city)
+                        .bold()
+                        .font(.title)
+                    Text(weather.data.state)
+                        .bold()
+                        .font(.title)
+                    Text(weather.data.country)
                         .bold()
                         .font(.title)
 
@@ -39,12 +45,23 @@ struct WeatherView: View {
                             .padding()
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Current Air Quality Index:")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Text("\(airQualityIndex)")
+                            .font(.system(size: 100))
+                            .fontWeight(.bold)
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom) // Cover the bottom of the screen
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom) // Cover the bottom of the screen
             .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-
         }
         .edgesIgnoringSafeArea(.bottom)
         .background(Color(hue: 0.598, saturation: 0.821, brightness: 0.701))
