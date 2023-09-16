@@ -1,0 +1,59 @@
+{
+    "status": "success",
+    "data": {
+        "name": "Eilat Harbor",
+        "city": "Eilat",
+        "state": "South District",
+        "country": "Israel",
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                34.939443,
+                29.531814
+            ]
+        },
+        "forecasts": [
+            {
+                "ts": "2017-02-01T03:00:00.000Z",
+                "aqius": 21,
+                "aqicn": 7,
+                "tp": 8,
+                "tp_min": 6,
+                "pr": 976,
+                "hu": 100,
+                "ws": 3,
+                "wd": 313,
+                "ic": "10n"
+            }
+        ],
+        "current": {
+            "weather": {
+                "ts": "2017-02-01T01:00:00.000Z",
+                "tp": 12,
+                "pr": 1020,
+                "hu": 62,
+                "ws": 2,
+                "wd": 320,
+                "ic": "01n"
+            },
+            "pollution": {
+                "ts": "2017-02-01T01:15:00.000Z",
+                "aqius": 18,
+                "mainus": "p1",
+                "aqicn": 20,
+                "p1": {
+                    "conc": 20,
+                    "aqius": 18,
+                    "aqicn": 20
+                }
+            }
+        },
+        "history": {
+            "weather": [
+                {
+                    "ts": "2017-02-01T01:00:00.000Z",
+                    "tp": 12,
+                    "pr": 1020,
+                    "hu": 62,
+                    "ws": 2,
+                    
