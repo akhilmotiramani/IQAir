@@ -1,9 +1,3 @@
-//
-//  ModelData.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/16/23.
-
 import Foundation
 
 var previewWeather: ResponseBody = load(filename: "weatherData.json")

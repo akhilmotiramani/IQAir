@@ -1,10 +1,3 @@
-//
-//  LocationManager.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/14/23.
-//
-
 import Foundation
 //Get the current location of the iphone
 import CoreLocation

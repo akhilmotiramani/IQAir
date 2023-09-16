@@ -1,10 +1,3 @@
-//
-//  WeatherManager.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/15/23.
-//
-
 import Foundation
 import CoreLocation
 

@@ -1,10 +1,3 @@
-//
-//  LoadingView.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/15/23.
-//
-
 import SwiftUI
 
 struct LoadingView: View {

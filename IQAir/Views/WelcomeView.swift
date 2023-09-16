@@ -1,10 +1,3 @@
-//
-//  WelcomeView.swift
-//  IQAir
-//
-//  Created by Akhil Motiramani on 9/14/23.
-//
-
 import SwiftUI
 import CoreLocationUI
 
