@@ -2,6 +2,7 @@ import SwiftUI
 import CoreLocationUI
 
 struct WelcomeView: View {
+    //Expects locationmanager already exsists and injects into this view
     @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {

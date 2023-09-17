@@ -5,6 +5,7 @@ import CoreLocation
 // This class allows us to manage the location of the iPhone user
 //Used ObservableObject because state of the object needs to be shared across multiple views
 //NSObject used to help object conform to Objective-c objects because Swfit is a compile-time based lanuage (doesnt let you change variables as you run it) Need NSObject for UIKit
+//CLLocationManagerDelegate used to set up communication between the object and the view
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //creates manager to communicate with location services
     let manager = CLLocationManager()
@@ -32,7 +33,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         location = locations.first?.coordinate
         isLoading = false
     }
-    //takes in the parameter representing the locaton as well as the erro
+    //takes in the parameter representing the locaton as well as the error
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error getting location", error)
         isLoading = false

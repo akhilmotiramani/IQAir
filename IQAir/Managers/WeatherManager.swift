@@ -17,7 +17,7 @@ class WeatherManager {
         // Create URL request using the URL
         let urlRequest = URLRequest(url: url)
         
-        // Sends the request to the URL
+        // Sends the request to the URL and assigns them to data and response, the request is asycn(can run in the background)
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
         // Checks to see if request is good

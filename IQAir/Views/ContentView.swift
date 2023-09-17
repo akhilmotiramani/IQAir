@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Used a state object to ensure changes in the locationmanager are correctly updated
+    // Creates a new locationManager instance specific to only this view 
     @StateObject var locationManager = LocationManager()
     
     // Create an instance of WeatherManager

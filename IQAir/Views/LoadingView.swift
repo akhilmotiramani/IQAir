@@ -1,4 +1,4 @@
-import SwiftUI  // Import the SwiftUI framework
+import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
